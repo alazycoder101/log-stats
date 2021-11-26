@@ -1,6 +1,7 @@
 module CLI
   require_relative '../lib/cli/row'
   require_relative '../lib/cli/parser'
+  require_relative '../lib/cli/counter'
   extend self
 
   def run(args=[])
