@@ -1,4 +1,5 @@
 module CLI
+  require_relative '../lib/cli/row'
   extend self
 
   def run(args=[])
