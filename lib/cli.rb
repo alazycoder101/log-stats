@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# CLI: command line
 module CLI
   require_relative '../lib/cli/row'
   require_relative '../lib/cli/parser'
@@ -12,24 +13,31 @@ module CLI
     return help if args.size != 1
 
     file = args.first
-    return help unless File.exist?(file)
+    return missing_file unless check_file(file)
 
     rows = Parser.parse(file)
-    stats(rows)
-    unique_stats(rows)
+    print_stats(rows)
+    print_unique_stats(rows)
   end
 
-  def stats(rows)
-    stats = Counter.count(rows)
+  def missing_file
+    puts 'Please provide an existing file'
+  end
 
+  def check_file(file)
+    !file.nil? && File.exist?(file)
+  end
+
+  def print_stats(rows)
     puts 'visits'
+
+    stats = Counter.count(rows)
     stats.sort_by { |variable| variable[1] }.reverse.each do |variable, count|
       puts "#{variable} #{count} visits"
     end
   end
 
-  def unique_stats(rows)
-    puts ''
+  def print_unique_stats(rows)
     puts 'unique visits'
     stats = Counter.count(rows, unique: true)
     stats.sort_by { |variable| variable[1] }.reverse.each do |variable, count|

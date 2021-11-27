@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module CLI
+  # Counter: count visits to paths
   class Counter
     attr_accessor :rows, :stats
 
