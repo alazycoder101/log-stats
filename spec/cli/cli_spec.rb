@@ -14,25 +14,24 @@ describe CLI do
     context 'wit file' do
       it 'should print stats' do
         output = <<~OUTPUT
-          visits
           /about/2 90 visits
           /contact 89 visits
           /index 82 visits
-          /about 81 visits
-          /help_page/1 80 visits
-          /home 78 visits
+        OUTPUT
 
-          unique visits
-          /index 23 visits
-          /home 23 visits
-          /contact 23 visits
-          /help_page/1 23 visits
+        expect do
+          CLI.run ['spec/fixtures/webserver.log']
+        end.to output(a_string_including(output)).to_stdout
+      end
+
+      it 'should print unique stats' do
+        output = <<~OUTPUT
           /about/2 22 visits
           /about 21 visits
         OUTPUT
         expect do
           CLI.run ['spec/fixtures/webserver.log']
-        end.to output(output).to_stdout
+        end.to output(a_string_including(output)).to_stdout
       end
     end
   end

@@ -5,9 +5,13 @@ docker build -t rubyapp .
 docker run -v /home/app:/opt/app -ti --rm rubyapp sh
 ```
 
+## Lint
+```
+rubocop --auto-gen-config
+```
 ## Test
 ```
 bundle install
-rspec spec
+COVERAGE=true rspec spec
 ```
 

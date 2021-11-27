@@ -15,16 +15,23 @@ module CLI
     return help unless File.exist?(file)
 
     rows = Parser.parse(file)
+    stats(rows)
+    unique_stats(rows)
+  end
+
+  def stats(rows)
     stats = Counter.count(rows)
 
     puts 'visits'
     stats.sort_by { |variable| variable[1] }.reverse.each do |variable, count|
       puts "#{variable} #{count} visits"
     end
+  end
 
+  def unique_stats(rows)
     puts ''
     puts 'unique visits'
-    stats = Counter.count(rows, true)
+    stats = Counter.count(rows, unique: true)
     stats.sort_by { |variable| variable[1] }.reverse.each do |variable, count|
       puts "#{variable} #{count} visits"
     end
@@ -35,10 +42,10 @@ module CLI
   end
 
   def help
-    puts <<-EOF
+    puts <<-USAGE
     Usage:
       #{$PROGRAM_NAME} file
-    EOF
+    USAGE
   end
 
   def version

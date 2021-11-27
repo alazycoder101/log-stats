@@ -17,16 +17,6 @@ module CLI
         exit
       end
 
-      if File.size(file).zero?
-        puts 'File is empty'
-        exit
-      end
-
-      if File.size(file) > 1_000_000
-        puts 'File is too large'
-        exit
-      end
-
       CLI::Parser.new(file).parse
     end
 

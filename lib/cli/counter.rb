@@ -4,7 +4,7 @@ module CLI
   class Counter
     attr_accessor :rows, :stats
 
-    def self.count(rows, unique = false)
+    def self.count(rows, unique: false)
       counter = Counter.new(rows)
       if unique
         counter.unique
