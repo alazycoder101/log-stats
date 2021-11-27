@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 describe CLI::Counter do
-  let(:rows) { [
+  let(:rows) do
+    [
       CLI::Row.new('/help_page/1', '126.318.035.038'),
       CLI::Row.new('/contact', '184.123.665.067'),
       CLI::Row.new('/home', '184.123.665.067'),
@@ -8,7 +11,8 @@ describe CLI::Counter do
       CLI::Row.new('/help_page/1', '929.398.951.889'),
       CLI::Row.new('/help_page/1', '126.318.035.038'),
       CLI::Row.new('/help_page/1', '722.247.931.582')
-  ]}
+    ]
+  end
 
   describe '#count' do
     it 'should return visits' do
