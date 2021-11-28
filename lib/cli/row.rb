@@ -8,5 +8,9 @@ module CLI
     def initialize(*fields)
       @fields = fields.first.is_a?(Array) ? fields.first : fields
     end
+
+    def valid?
+      true
+    end
   end
 end

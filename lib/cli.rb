@@ -2,9 +2,12 @@
 
 # CLI: command line
 module CLI
-  require_relative '../lib/cli/row'
-  require_relative '../lib/cli/parser'
-  require_relative '../lib/cli/counter'
+  require_relative './cli/validator'
+  require_relative './cli/parser'
+  require_relative './cli/row'
+  require_relative './cli/weblog_row'
+  require_relative './cli/counter'
+  autoload :Validator, './cli/validator'
 
   module_function
 
@@ -46,6 +49,7 @@ module CLI
   end
 
   def parse(unparsed)
+    # TODO: validate parameters
     unparsed
   end
 

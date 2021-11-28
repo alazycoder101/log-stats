@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative './weblog_row'
 
 module CLI
   # Parser: parse row into array
@@ -18,7 +19,7 @@ module CLI
 
     def parse
       File.foreach(@file) do |line|
-        @rows << Row.new(line.split(SEPERATOR))
+        @rows << WeblogRow.new(line.split(SEPERATOR))
       end
       @rows
     end
