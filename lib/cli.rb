@@ -3,6 +3,7 @@
 # CLI: command line
 module CLI
   require_relative './cli/validator'
+  require_relative './cli/path_validator'
   require_relative './cli/parser'
   require_relative './cli/row'
   require_relative './cli/weblog_row'

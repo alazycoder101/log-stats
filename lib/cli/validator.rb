@@ -6,7 +6,9 @@ module CLI
     attr_accessor :input, :errors, :valid
 
     def self.validate(input)
-      Validator.new(input).validate
+      validator = Validator.new(input)
+      validator.validate
+      validator
     end
 
     def initialize(input)
