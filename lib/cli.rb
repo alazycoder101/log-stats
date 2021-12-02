@@ -15,6 +15,11 @@ module CLI
     file = args.first
     return missing_file unless check_file(file)
 
+    show_stats(file)
+  end
+
+  # default command
+  def show_stats(file)
     rows = Parser.parse(file)
     counter = Counter.new(rows)
     puts 'unique visits'

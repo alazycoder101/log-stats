@@ -29,8 +29,9 @@ module CLI
 
     def unique
       group.map do |variable|
-        [variable[0], variable[1].map{ |row|
-                        row.fields[1] }.uniq.size]
+        [variable[0], variable[1].map do |row|
+                        row.fields[1]
+                      end.uniq.size]
       end
     end
   end
