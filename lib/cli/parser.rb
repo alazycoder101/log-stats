@@ -3,7 +3,7 @@
 module CLI
   # Parser: parse row into array
   class Parser
-    attr_accessor :file, :rows
+    attr_reader :rows
 
     SEPERATOR = ' '
 

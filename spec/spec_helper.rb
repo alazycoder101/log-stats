@@ -11,8 +11,3 @@ end
 
 $LOAD_PATH.push File.expand_path('lib', __dir__)
 require 'cli'
-
-RSpec.configure do |c|
-  c.after(:suite) do
-  end
-end

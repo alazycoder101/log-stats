@@ -3,15 +3,16 @@
 module CLI
   # Counter: count visits to paths
   class Counter
-    attr_accessor :rows, :stats
+    attr_reader :stats
 
-    def self.count(rows, unique: false)
+    def self.count(rows)
       counter = Counter.new(rows)
-      if unique
-        counter.unique
-      else
-        counter.count
-      end
+      counter.count
+    end
+
+    def self.unique_count(rows)
+      counter = Counter.new(rows)
+      counter.unique
     end
 
     def initialize(rows = [])
@@ -19,14 +20,17 @@ module CLI
     end
 
     def count
-      @stats = @rows.group_by { |row| row.fields[0] }.map { |variable| [variable[0], variable[1].size] }
+      group.map { |variable| [variable[0], variable[1].size] }
+    end
+
+    def group
+      @group ||= @rows.group_by { |row| row.fields[0] }
     end
 
     def unique
-      @stats = @rows.group_by { |row| row.fields[0] }.map do |variable|
-        [variable[0], variable[1].map do |row|
-                        row.fields[1]
-                      end.uniq.size]
+      group.map do |variable|
+        [variable[0], variable[1].map{ |row|
+                        row.fields[1] }.uniq.size]
       end
     end
   end

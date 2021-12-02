@@ -21,7 +21,7 @@ describe CLI::Counter do
     end
 
     it 'should return unique visits' do
-      result = CLI::Counter.count(rows, unique: true)
+      result = CLI::Counter.unique_count(rows)
       expect(result[0]).to eq(['/help_page/1', 3])
     end
   end
