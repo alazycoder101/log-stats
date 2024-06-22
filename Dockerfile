@@ -1,4 +1,4 @@
-FROM ruby:3.0.4-alpine
+FROM ruby:3.1.6-alpine
 
 ARG app=/opt/app
 
