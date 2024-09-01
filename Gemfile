@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 
 group :development do
   gem 'rspec', '~>3.1'
-  gem 'rubocop', '>= 1.24.0'
+  gem 'rubocop', '>= 1.66.0'
 end
 
 group :test do
