@@ -11,7 +11,7 @@ describe CLI do
       end
     end
 
-    context 'wit file' do
+    context 'with file' do
       it 'should print stats' do
         output = <<~OUTPUT
           /about/2 90 visits

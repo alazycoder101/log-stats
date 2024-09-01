@@ -5,11 +5,12 @@ module CLI
   require_relative 'cli/row'
   require_relative 'cli/parser'
   require_relative 'cli/counter'
+  require_relative 'cli/logger'
 
   module_function
 
   def run(args = [])
-    args = parse(args)
+    args = CLI.parse(args)
     return help if args.size != 1
 
     file = args.first
@@ -22,16 +23,17 @@ module CLI
   def show_stats(file)
     rows = Parser.parse(file)
     counter = Counter.new(rows)
-    puts 'unique visits'
+    Logger.info('all visits')
     result = get_stats(counter)
     print(result)
 
-    puts 'unique visits'
+    Logger.info('unique visits')
     result = get_unique_stats(counter)
     print(result)
   end
 
   def missing_file
+    Logger.error
     puts 'Please provide an existing file'
   end
 
@@ -45,7 +47,7 @@ module CLI
 
   def print(result)
     result.each do |variable, count|
-      puts "#{variable} #{count} visits"
+      Logger.info "#{variable} #{count} visits"
     end
   end
 
