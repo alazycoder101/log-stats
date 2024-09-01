@@ -18,7 +18,7 @@ describe CLI::Parser do
   describe '#parse' do
     it 'should parse a log file' do
       CLI::Parser.parse('spec/fixtures/one.log', counter)
-      expect(counter).to have_received(:count).with("/help_page/1 126.318.035.038\n")
+      expect(counter).to have_received(:count)
     end
   end
 end

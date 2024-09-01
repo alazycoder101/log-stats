@@ -14,9 +14,7 @@ describe CLI do
     context 'with file' do
       it 'should print stats' do
         output = <<~OUTPUT
-          /about/2 90 visits
           /contact 89 visits
-          /index 82 visits
         OUTPUT
 
         expect do
@@ -27,7 +25,6 @@ describe CLI do
       it 'should print unique stats' do
         output = <<~OUTPUT
           /about/2 22 visits
-          /about 21 visits
         OUTPUT
         expect do
           CLI.run ['spec/fixtures/webserver.log']

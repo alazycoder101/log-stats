@@ -28,8 +28,12 @@ describe CLI::UniqueCounter do
 
   describe '#count' do
     it 'increments visits' do
-      expect { counter.count(rows[0]) }.to change { counter.stats }.from({}).to('/help_page/1' => { count: 1, ips: { '126.318.035.038' => 1 } })
-      expect { counter.count(rows[0]) }.to change { counter.stats }.to('/help_page/1' => { count: 1, ips: { '126.318.035.038' => 2 } })
+      expect { counter.count(rows[0]) }.to change {
+        counter.stats
+      }.from({}).to('/help_page/1' => { count: 1, ips: { '126.318.035.038' => 1 } })
+      expect { counter.count(rows[0]) }.to change {
+        counter.stats
+      }.to('/help_page/1' => { count: 1, ips: { '126.318.035.038' => 2 } })
     end
   end
 end

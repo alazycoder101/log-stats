@@ -21,7 +21,7 @@ module CLI
     def parse
       File.foreach(@file) do |line|
         @observers.each do |observer|
-          observer.count(line)
+          observer.count(Row.new(line))
         end
       end
     end

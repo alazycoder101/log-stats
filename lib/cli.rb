@@ -22,14 +22,14 @@ module CLI
 
   # default command
   def show_stats(file)
-    rows = Parser.parse(file)
-    counter = Counter.new(rows)
+    counter = Counter.new
+    unique_counter = UniqueCounter.new
+    Parser.parse(file, counter, unique_counter)
     Logger.info('all visits')
     counter.output
 
     Logger.info('unique visits')
-    result = get_unique_stats(counter)
-    print(result)
+    unique_counter.output
   end
 
   def missing_file

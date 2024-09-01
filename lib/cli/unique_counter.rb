@@ -22,8 +22,8 @@ module CLI
     end
 
     def output
-      status.each do |key, value|
-        $stdout.puts "#{key} #{value[:count]}"
+      stats.each do |key, value|
+        $stdout.puts "#{key} #{value[:count]} visits"
       end
     end
   end
