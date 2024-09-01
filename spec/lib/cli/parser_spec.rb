@@ -2,6 +2,12 @@
 
 require 'spec_helper'
 describe CLI::Parser do
+  let(:counter) { double('Counter', count: nil) }
+
+  before do
+    allow(counter).to receive(:count)
+  end
+
   describe 'initialize' do
     it 'should create a new Parser object' do
       parser = CLI::Parser.new('spec/fixtures/webserver.log')
@@ -11,9 +17,8 @@ describe CLI::Parser do
 
   describe '#parse' do
     it 'should parse a log file' do
-      rows = CLI::Parser.parse('spec/fixtures/webserver.log')
-      expect(rows).to be_a Array
-      expect(rows.first).to be_a CLI::Row
+      CLI::Parser.parse('spec/fixtures/one.log', counter)
+      expect(counter).to have_received(:count).with("/help_page/1 126.318.035.038\n")
     end
   end
 end

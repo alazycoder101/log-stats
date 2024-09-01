@@ -20,5 +20,11 @@ module CLI
         ips[row.ip] = 1
       end
     end
+
+    def output
+      status.each do |key, value|
+        $stdout.puts "#{key} #{value[:count]}"
+      end
+    end
   end
 end

@@ -13,5 +13,11 @@ module CLI
       @stats[row.path] ||= 0
       @stats[row.path] += 1
     end
+
+    def output
+      status.each do |key, value|
+        $stdout.puts "#{key} #{value}"
+      end
+    end
   end
 end

@@ -25,8 +25,7 @@ module CLI
     rows = Parser.parse(file)
     counter = Counter.new(rows)
     Logger.info('all visits')
-    result = get_stats(counter)
-    print(result)
+    counter.output
 
     Logger.info('unique visits')
     result = get_unique_stats(counter)

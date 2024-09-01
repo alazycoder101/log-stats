@@ -1,26 +1,29 @@
 # frozen_string_literal: true
 
 module CLI
-  # Parser: parse row into array
+  # parser to parse log file
   class Parser
-    attr_reader :rows
-
-    SEPERATOR = ' '
-
-    def self.parse(file)
-      CLI::Parser.new(file).parse
+    def self.parse(file, *counters)
+      parser = CLI::Parser.new(file)
+      parser.register(*counters)
+      parser.parse
     end
 
     def initialize(file)
       @file = file
-      @rows = []
+      @observers = []
+    end
+
+    def register(*counters)
+      @observers.push(*counters)
     end
 
     def parse
       File.foreach(@file) do |line|
-        @rows << Row.new(line.split(SEPERATOR))
+        @observers.each do |observer|
+          observer.count(line)
+        end
       end
-      @rows
     end
   end
 end
