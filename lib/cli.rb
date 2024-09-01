@@ -5,6 +5,7 @@ module CLI
   require_relative 'cli/row'
   require_relative 'cli/parser'
   require_relative 'cli/counter'
+  require_relative 'cli/unique_counter'
   require_relative 'cli/logger'
 
   module_function
